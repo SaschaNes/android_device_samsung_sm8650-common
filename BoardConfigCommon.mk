@@ -73,22 +73,39 @@ BOARD_MKBOOTIMG_INIT_ARGS += --header_version $(BOARD_INIT_BOOT_HEADER_VERSION)
 BOARD_BOOTCONFIG := \
     androidboot.hardware=qcom \
     androidboot.memcg=1 \
-    androidboot.usbcontroller=a600000.dwc3
+    androidboot.usbcontroller=a600000.dwc3 \
+    androidboot.load_modules_parallel=false \
+    androidboot.hypervisor.protected_vm.supported=true \
+    androidboot.selinux=permissive
 
 BOARD_KERNEL_CMDLINE := \
+    ignore_loglevel \
+    debug \
     androidboot.hardware=qcom \
     androidboot.memcg=1 \
     androidboot.usbcontroller=a600000.dwc3 \
-    printk.devkmsg=on \
+    androidboot.load_modules_parallel=false \
+    androidboot.hypervisor.protected_vm.supported=true \
+    androidboot.selinux=permissive \
+    aosp_is_booting \
     firmware_class.path=/vendor/firmware_mnt/image \
-    video=vfb:640x400,bpp=32,memsize=3072000
+    loop.max_part=7 \
+    printk.devkmsg=on \
+    video=vfb:640x400,bpp=32,memsize=3072000 \
+    audit=0
+
+# TARGET_KERNEL_CONFIG := e3q_defconfig
 
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_IMAGE_NAME := Image
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_USES_GENERIC_KERNEL_IMAGE := true
 
-TARGET_KERNEL_SOURCE := kernel/samsung/sm8650
+TARGET_KERNEL_CONFIG := \
+    gki_defconfig \
+    vendor/pineapple_GKI.config \
+    oem/e3q-lego.config
+
 
 # Kernel modules
 TARGET_KERNEL_EXT_MODULE_ROOT := kernel/samsung/sm8650-modules
