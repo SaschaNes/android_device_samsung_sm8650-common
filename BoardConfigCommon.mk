@@ -4,7 +4,7 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-COMMON_PATH := device/samsung/sm8550-common
+COMMON_PATH := device/samsung/sm8650-common
 
 # Architecture
 TARGET_ARCH := arm64
@@ -41,7 +41,7 @@ BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
 BOARD_RAMDISK_USE_LZ4 := true
 
 # Bootloader
-TARGET_BOOTLOADER_BOARD_NAME := kalama
+TARGET_BOOTLOADER_BOARD_NAME := pineapple
 
 # DTB / DTBO
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
@@ -57,11 +57,11 @@ DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := \
     hardware/qcom-caf/common/vendor_framework_compatibility_matrix.xml
 
 DEVICE_MANIFEST_FILE := \
-    $(COMMON_PATH)/vintf/manifest_kalama.xml \
+    $(COMMON_PATH)/vintf/manifest_pineapple.xml \
     $(COMMON_PATH)/vintf/manifest_samsung.xml \
     $(COMMON_PATH)/vintf/radio_manifest.xml \
-    hardware/qcom-caf/sm8550/audio/primary-hal/configs/common/manifest_non_qmaa.xml \
-    hardware/qcom-caf/sm8550/audio/primary-hal/configs/common/manifest_non_qmaa_extn.xml
+    hardware/qcom-caf/sm8650/audio/primary-hal/configs/common/manifest_non_qmaa.xml \
+    hardware/qcom-caf/sm8650/audio/primary-hal/configs/common/manifest_non_qmaa_extn.xml
 
 DEVICE_MATRIX_FILE := hardware/qcom-caf/common/compatibility_matrix.xml
 
@@ -88,20 +88,20 @@ BOARD_KERNEL_IMAGE_NAME := Image
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_USES_GENERIC_KERNEL_IMAGE := true
 
-TARGET_KERNEL_SOURCE := kernel/samsung/sm8550
+TARGET_KERNEL_SOURCE := kernel/samsung/sm8650
 
 # Kernel modules
-TARGET_KERNEL_EXT_MODULE_ROOT := kernel/samsung/sm8550-modules
+TARGET_KERNEL_EXT_MODULE_ROOT := kernel/samsung/sm8650-modules
 
 # Metadata
 BOARD_USES_METADATA_PARTITION := true
 
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 100663296
-BOARD_CACHEIMAGE_PARTITION_SIZE := 629145600
+BOARD_CACHEIMAGE_PARTITION_SIZE := 367001600
 BOARD_DTBOIMG_PARTITION_SIZE := 16777216
 BOARD_INIT_BOOT_IMAGE_PARTITION_SIZE := 8388608
-BOARD_RECOVERYIMAGE_PARTITION_SIZE := 109051904
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 110034944
 BOARD_VENDOR_BOOTIMAGE_PARTITION_SIZE := 100663296
 
 BOARD_ODMIMAGE_PARTITION_RESERVED_SIZE := 209715200
@@ -110,7 +110,7 @@ BOARD_SYSTEMIMAGE_PARTITION_RESERVED_SIZE := 209715200
 BOARD_SYSTEM_EXTIMAGE_PARTITION_RESERVED_SIZE := 209715200
 BOARD_VENDORIMAGE_PARTITION_RESERVED_SIZE := 209715200
 
-BOARD_SUPER_PARTITION_SIZE ?= 12100567040
+BOARD_SUPER_PARTITION_SIZE := 14105444352
 BOARD_SUPER_PARTITION_GROUPS := samsung_dynamic_partitions
 BOARD_SAMSUNG_DYNAMIC_PARTITIONS_PARTITION_LIST := odm product system system_dlkm system_ext vendor vendor_dlkm
 BOARD_SAMSUNG_DYNAMIC_PARTITIONS_SIZE := $(shell echo $$(($(BOARD_SUPER_PARTITION_SIZE) - 4194304))) # (BOARD_SUPER_PARTITION_SIZE - "reasonable overhead of 4 MiB")
@@ -139,7 +139,7 @@ BOARD_ROOT_EXTRA_FOLDERS := \
 # Platform
 BOARD_VENDOR := samsung
 BOARD_USES_QCOM_HARDWARE := true
-TARGET_BOARD_PLATFORM := kalama
+TARGET_BOARD_PLATFORM := pineapple
 
 # Properties
 TARGET_VENDOR_PROP += $(COMMON_PATH)/vendor.prop
@@ -164,7 +164,7 @@ TARGET_RELEASETOOLS_EXTENSIONS := $(COMMON_PATH)
 ENABLE_VENDOR_RIL_SERVICE := true
 
 # Security
-BOOT_SECURITY_PATCH := 2025-04-01
+BOOT_SECURITY_PATCH := 2025-07-01
 VENDOR_SECURITY_PATCH := $(BOOT_SECURITY_PATCH)
 
 # SEPolicy
@@ -209,4 +209,4 @@ WIFI_HIDL_UNIFIED_SUPPLICANT_SERVICE_RC_ENTRY := true
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 
 # Include the proprietary files BoardConfig.
-include vendor/samsung/sm8550-common/BoardConfigVendor.mk
+include vendor/samsung/sm8650-common/BoardConfigVendor.mk
