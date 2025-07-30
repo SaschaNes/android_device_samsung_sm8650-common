@@ -58,7 +58,7 @@ DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := \
 
 DEVICE_MANIFEST_FILE := \
     $(COMMON_PATH)/vintf/manifest_pineapple.xml \
-    $(COMMON_PATH)/vintf/manifest_samsung.xml \
+#    $(COMMON_PATH)/vintf/manifest_samsung.xml \
     $(COMMON_PATH)/vintf/radio_manifest.xml \
     hardware/qcom-caf/sm8650/audio/primary-hal/configs/common/manifest_non_qmaa.xml \
     hardware/qcom-caf/sm8650/audio/primary-hal/configs/common/manifest_non_qmaa_extn.xml
@@ -73,39 +73,23 @@ BOARD_MKBOOTIMG_INIT_ARGS += --header_version $(BOARD_INIT_BOOT_HEADER_VERSION)
 BOARD_BOOTCONFIG := \
     androidboot.hardware=qcom \
     androidboot.memcg=1 \
-    androidboot.usbcontroller=a600000.dwc3 \
-    androidboot.load_modules_parallel=false \
-    androidboot.hypervisor.protected_vm.supported=true \
-    androidboot.selinux=permissive
+    androidboot.usbcontroller=a600000.dwc3
 
 BOARD_KERNEL_CMDLINE := \
-    ignore_loglevel \
-    debug \
     androidboot.hardware=qcom \
     androidboot.memcg=1 \
     androidboot.usbcontroller=a600000.dwc3 \
-    androidboot.load_modules_parallel=false \
-    androidboot.hypervisor.protected_vm.supported=true \
-    androidboot.selinux=permissive \
-    aosp_is_booting \
-    firmware_class.path=/vendor/firmware_mnt/image \
-    loop.max_part=7 \
+    androidboot.fcm_version=202404 \
     printk.devkmsg=on \
-    video=vfb:640x400,bpp=32,memsize=3072000 \
-    audit=0
-
-# TARGET_KERNEL_CONFIG := e3q_defconfig
+    firmware_class.path=/vendor/firmware_mnt/image \
+    video=vfb:640x400,bpp=32,memsize=3072000
 
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_IMAGE_NAME := Image
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_USES_GENERIC_KERNEL_IMAGE := true
 
-TARGET_KERNEL_CONFIG := \
-    gki_defconfig \
-    vendor/pineapple_GKI.config \
-    oem/e3q-lego.config
-
+TARGET_KERNEL_SOURCE := kernel/samsung/sm8650
 
 # Kernel modules
 TARGET_KERNEL_EXT_MODULE_ROOT := kernel/samsung/sm8650-modules
@@ -114,25 +98,24 @@ TARGET_KERNEL_EXT_MODULE_ROOT := kernel/samsung/sm8650-modules
 BOARD_USES_METADATA_PARTITION := true
 
 # Partitions
+BOARD_FLASH_BLOCK_SIZE := 262144 # (BOARD_KERNEL_PAGESIZE * 64)
 BOARD_BOOTIMAGE_PARTITION_SIZE := 100663296
 BOARD_CACHEIMAGE_PARTITION_SIZE := 367001600
 BOARD_DTBOIMG_PARTITION_SIZE := 16777216
 BOARD_INIT_BOOT_IMAGE_PARTITION_SIZE := 8388608
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 110034944
 BOARD_VENDOR_BOOTIMAGE_PARTITION_SIZE := 100663296
-
-BOARD_ODMIMAGE_PARTITION_RESERVED_SIZE := 209715200
-BOARD_PRODUCTIMAGE_PARTITION_RESERVED_SIZE := 209715200
-BOARD_SYSTEMIMAGE_PARTITION_RESERVED_SIZE := 209715200
-BOARD_SYSTEM_EXTIMAGE_PARTITION_RESERVED_SIZE := 209715200
-BOARD_VENDORIMAGE_PARTITION_RESERVED_SIZE := 209715200
-
 BOARD_SUPER_PARTITION_SIZE := 14105444352
 BOARD_SUPER_PARTITION_GROUPS := samsung_dynamic_partitions
-BOARD_SAMSUNG_DYNAMIC_PARTITIONS_PARTITION_LIST := odm product system system_dlkm system_ext vendor vendor_dlkm
-BOARD_SAMSUNG_DYNAMIC_PARTITIONS_SIZE := $(shell echo $$(($(BOARD_SUPER_PARTITION_SIZE) - 4194304))) # (BOARD_SUPER_PARTITION_SIZE - "reasonable overhead of 4 MiB")
-
-BOARD_FLASH_BLOCK_SIZE := 262144 # (BOARD_KERNEL_PAGESIZE * 64)
+BOARD_SAMSUNG_DYNAMIC_PARTITIONS_PARTITION_LIST := \
+    odm \
+    product \
+    system \
+    system_dlkm \
+    system_ext \
+    vendor \
+    vendor_dlkm
+BOARD_SAMSUNG_DYNAMIC_PARTITIONS_SIZE := 14101250048 # (BOARD_SUPER_PARTITION_SIZE - 4MiB)
 
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_ODMIMAGE_FILE_SYSTEM_TYPE := ext4
