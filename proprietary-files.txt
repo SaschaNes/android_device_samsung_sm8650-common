@@ -377,10 +377,6 @@ vendor/bin/vendor_modprobe.sh
 vendor/etc/init/hw/init.qti.kernel.rc
 
 # Keymint
-vendor/bin/hw/android.hardware.security.keymint-service:vendor/bin/hw/android.hardware.security.keymint-service-qti
-vendor/bin/hw/android.hardware.security.keymint-service-spu-qti
-vendor/etc/init/android.hardware.security.keymint-service-spu-qti.rc
-vendor/etc/init/android.hardware.security.keymint-service.rc:vendor/etc/init/android.hardware.security.keymint-service-qti.rc
 vendor/lib64/libskeymint10device.so
 vendor/lib64/libskeymint_cli.so
 vendor/lib64/libspcom.so

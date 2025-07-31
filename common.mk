@@ -151,34 +151,92 @@ PRODUCT_PACKAGES += \
     IPACM_Filter_cfg.xml
 
 # Init
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/init/fstab.qcom:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/fstab.qcom
+#PRODUCT_COPY_FILES += \
+#    $(LOCAL_PATH)/init/fstab.qcom:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/fstab.qcom
+
+#PRODUCT_PACKAGES += \
+#    fstab.qcom \
+#    init.class_main.sh \
+#    init.mdm.sh \
+#    init.qcom.early_boot.sh \
+#    init.qcom.post_boot.sh \
+#    init.qcom.rc \
+#    init.qcom.factory.rc \
+#    init.qcom.sh \
+#    init.recovery.qcom.rc \
+#    init.target.rc \
+#    ueventd-odm.rc \
+#    ueventd.qcom.rc
+
+#PRODUCT_PACKAGES += \
+#    fstab.ramplus \
+#    init.fingerprint.rc \
+#    init.nfc.samsung.rc \
+#    init.ramplus.rc \
+#    init.samsung.bsp.rc \
+#    init.samsung.connector.rc \
+#    init.samsung.display.rc \
+#    init.samsung.dp.rc \
+#    init.samsung.firmware.rc \
+#    init.samsung.power.rc \
+#    init.samsung.rc
+
+# Rootdir
+PRODUCT_PACKAGES += \
+    init.class_main.sh \
+    init.crda.sh \
+    init.kernel.post_boot-cliffs.sh \
+    init.kernel.post_boot-pineapple.sh \
+    init.kernel.post_boot.sh \
+    init.mdm.sh \
+    init.qcom.class_core.sh \
+    init.qcom.coex.sh \
+    init.qcom.early_boot.sh \
+    init.qcom.efs.sync.sh \
+    init.qcom.post_boot.sh \
+    init.qcom.sdio.sh \
+    init.qcom.sensors.sh \
+    init.qcom.sh \
+    init.qti.qcv.rc \
+    init.qti.qcv.sh \
+    init.qti.kernel.debug-cliffs.sh \
+    init.qti.kernel.debug-pineapple.sh \
+    init.qti.kernel.debug.sh \
+    init.qti.kernel.early_debug-pineapple.sh \
+    init.qti.kernel.early_debug.sh \
+    init.qti.kernel.sh \
+    init.qti.media.sh \
+    init.qti.time.daemon.sh \
+    init.qti.write.sh \
+    init.vendor.sensordebug.sh \
+    init.vendor.sensordebug.ssr_dump.sh \
+    qca6234-service.sh \
+    system_dlkm_modprobe.sh \
+    ueventd.qcom.rc \
+    vendor_modprobe.sh \
 
 PRODUCT_PACKAGES += \
     fstab.qcom \
-    init.class_main.sh \
-    init.mdm.sh \
-    init.qcom.early_boot.sh \
-    init.qcom.post_boot.sh \
+    init.e3q.rc \
+    init.qcom.factory.rc \
     init.qcom.rc \
-    init.qcom.sh \
-    init.recovery.qcom.rc \
-    init.target.rc \
-    ueventd-odm.rc \
-    ueventd.qcom.rc
-
-PRODUCT_PACKAGES += \
-    fstab.ramplus \
-    init.fingerprint.rc \
-    init.nfc.samsung.rc \
-    init.ramplus.rc \
+    init.qti.kernel.rc \
+    init.qti.ss-ramdump.sh \
+    init.qti.ufs.rc \
     init.samsung.bsp.rc \
-    init.samsung.connector.rc \
     init.samsung.display.rc \
     init.samsung.dp.rc \
-    init.samsung.firmware.rc \
+    init.samsung.factory.rc \
     init.samsung.power.rc \
-    init.samsung.rc
+    init.samsung.rc \
+    init.samsung.user.rc \
+    init.target.rc \
+    init.recovery.qcom.rc \
+    init.recovery.samsung.rc \
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/etc/fstab.qcom:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/fstab.qcom
+
 
 # Keymint
 PRODUCT_PACKAGES += \
